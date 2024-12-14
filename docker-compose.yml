@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  backend:
+    image: mannuk24/arm-eltl-backend:v2.5
+    env_file:
+      - .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - database
+
+  database:
+    image: postgres:16.4
+    env_file:
+      - .env
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+volumes:
+  db-data:
